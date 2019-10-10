@@ -24,6 +24,10 @@ namespace scanbotsdkexamplexamarin.iOS
 
         public CameraDemoDelegate cameraDelegate;
 
+        private UILabel imageCounterLabel;
+        private int imageCounter = 0;
+
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -73,6 +77,8 @@ namespace scanbotsdkexamplexamarin.iOS
 
             PlaceAutosnapButton();
             SetAutoSnapEnabled(autoSnappingEnabled);
+
+            PlaceImageCounterLabel();
         }
 
         public override void ViewWillDisappear(bool animated)
@@ -101,6 +107,26 @@ namespace scanbotsdkexamplexamarin.iOS
         {
             // White statusbar
             return UIStatusBarStyle.LightContent;
+        }
+
+        void PlaceImageCounterLabel()
+        {
+            CGSize screenSize = UIScreen.MainScreen.Bounds.Size;
+            CGRect frame = new CGRect(40, 80, 150, 50);
+
+            if (imageCounterLabel == null)
+            {
+                imageCounterLabel = new UILabel(frame);
+                imageCounterLabel.Text = "" + imageCounter;
+                imageCounterLabel.Font = UIFont.FromName("Arial", 30f);
+                imageCounterLabel.TextColor = UIColor.White;
+            }
+            else
+            {
+                flashButton.Frame = frame;
+            }
+            View.AddSubview(imageCounterLabel);
+            View.BringSubviewToFront(imageCounterLabel);
         }
 
         void PlaceFlashButton()
@@ -180,12 +206,19 @@ namespace scanbotsdkexamplexamarin.iOS
         public void ScannerControllerDidCaptureDocumentImage(SBSDKScannerViewController controller, UIImage documentImage)
         {
             // Here we get the perspective corrected and cropped document image after the shutter was (auto)released.
+
+            AppDelegate.TempImageStorage.AddImage(documentImage);
+
+            imageCounterLabel.Text = "" + (++imageCounter);
+
+            /*
             if (cameraDelegate != null)
             {
                 cameraDelegate.DidCaptureDocumentImage(documentImage);
             }
 
             NavigationController.PopToRootViewController(true);
+            */
         }
 
         [Export("scannerController:didCaptureImage:withDetectedPolygon:lensCameraProperties:")]
@@ -193,12 +226,14 @@ namespace scanbotsdkexamplexamarin.iOS
         {
             // Here we get the full image from the camera and an optional polygon that was detected on the image.
 
-            //this.detectedPolygon = polygon;
+            AppDelegate.TempImageStorage.AddImage(image);
 
+            /*
             if (cameraDelegate != null)
             {
                 cameraDelegate.DidCaptureOriginalImage(image);
             }
+            */
         }
 
         [Export("scannerController:didDetectPolygon:withStatus:")]

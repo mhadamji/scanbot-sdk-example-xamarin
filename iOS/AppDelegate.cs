@@ -20,7 +20,24 @@ namespace scanbotsdkexamplexamarin.iOS
         // or may be terminated. You can get an unrestricted "no-strings-attached" 30 day trial license key for free.
         // Please submit the trial license form (https://scanbot.io/sdk/trial.html) on our website by using
         // the app identifier "io.scanbot.example.sdk.xamarin" of this example app.
-        const string LICENSE_KEY = null;
+
+        // This is just a trial license key!
+        const string LICENSE_KEY =
+            "U+3ZNwa9TLoqHu3TKxYEbFbDWWHbNW" +
+            "AvANMUUPCeFv7S1D4gdEI5ZE+GH+ZC" +
+            "83nbm22JCGuf5ILvyuzHrm8xJpjTZY" +
+            "Fz4rHVery5YiIJC27nyWZE4Bf99cjt" +
+            "Wkj1BorJJb0aEnoNYbxDemu40ZgsY0" +
+            "wthTi5Bv+INIK3v+yAXNWPRzf0lFbU" +
+            "ZEyZMuOXesHgsDv0dcofQ0/jUgRat1" +
+            "n34VhYRtW+xsh4K+xd2vH8Vi/qrgzL" +
+            "d7Daf8LzBqWZsBkMakUJVOQQG3H+Qc" +
+            "NFZ8kfgFOnrGxbDLxAxeB+pOTrPH2a" +
+            "374XyhL149V6G0N+Z3aOEjfnF5bIK6" +
+            "fFWsFN7UyDLA==\nU2NhbmJvdFNESw" +
+            "ppby5zY2FuYm90LmV4YW1wbGUuc2Rr" +
+            "LnhhbWFyaW4KMTU3MzQzMDM5OQoxMD" +
+            "cxMDIKMQ==\n";
 
 
         public override UIWindow Window
